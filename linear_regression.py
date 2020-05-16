@@ -6,6 +6,9 @@ class linearRegression(object):
         self.n = n
         self.coef = np.zeros(n)
 
+    def getCoef(self):
+        return self.coef
+
     def train(self, x_train, y_train):
         x_tran = np.transpose(x_train)
         multi = np.dot(x_tran, x_train)
@@ -21,15 +24,3 @@ class linearRegression(object):
             y_test = y_test + self.coef[i]*x_test[i]
         #print(y_test)
         return y_test
-
-    def libRegForComp(x_train, y_train, x_test):
-        # Creating Model
-        reg = LinearRegression()
-        # Fitting training data
-        reg = reg.fit(x_train, y_train)
-        # Y Prediction
-        y_pred = reg.predict(x_test)
-        # Calculating R2 Score
-        r2_score = reg.score(x_train, y_train)
-        print(r2_score)
-        return y_pred
