@@ -32,7 +32,7 @@ def run(features_file_name, tags_file_name):
     predictions_lr = list()
     for vec in test:
         p = linearRegression.predict(vec)
-        if p > 0: p=1
+        if p > 0.5: p=1
         else: p=0;
         predictions_lr.append(p)
 
@@ -45,5 +45,7 @@ sms_tags_file_name = "old/tags.csv"
 email_features_file_name = "old/featuresEmail.csv"
 email_tags_file_name = "old/tagsEmail.csv"
 
-ans = run(email_features_file_name,email_tags_file_name)
+ans = run(sms_features_file_name,sms_tags_file_name)
 print(ans)
+#Then accuracy for sms in linear regression is - 88.57655502392345
+#Then accuracy for sms in linear perceptron is - 97

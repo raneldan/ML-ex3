@@ -48,3 +48,5 @@ def create_sms_files():
             csvoutForTags.writerow([row[0]])
             csvoutForData.writerow(row[1:])
             csvoutForFeatures.writerow(RowToVector(row[1:]).vector)
+
+create_sms_files()

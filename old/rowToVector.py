@@ -20,11 +20,11 @@ class RowToVector:
             self.funcs.append(self.has_free)
             self.funcs.append(self.has_price)
 
-        self.funcs.append(self.number_of_words)
+        #self.funcs.append(self.number_of_words)
         self.funcs.append(self.percentage_of_non_letters)
         self.funcs.append(self.has_link)
         self.funcs.append(self.percentage_of_capital_letters)
-        self.funcs.append(self.num_of_numbers)
+        #self.funcs.append(self.num_of_numbers)
         self.funcs.append(self.has_re)
         self.funcs.append(self.has_no_title)
         self.funcs.append(self.has_xxx)
@@ -39,7 +39,9 @@ class RowToVector:
             for index, letter in enumerate(word):
                 if ord(word[index]) > 122 or ord(word[index]) < 65:
                     non_letter_sign += 1
-        return non_letter_sign / self.num_of_characters()
+        p =  non_letter_sign / self.num_of_characters()
+        ans = 1 if p>50 else 0
+        return ans
 
     def number_of_long_sentences(self):
         sentences = ' '.join(self.row).split('.')
@@ -56,7 +58,9 @@ class RowToVector:
             for index, letter in enumerate(word):
                 if ord(word[index]) > 64 and ord(word[index]) < 91:
                     capital_letters += 1
-        return capital_letters / self.num_of_characters()
+        p = capital_letters / self.num_of_characters()
+        ans = 1 if p>50 else 0
+        return ans
 
     def num_of_characters(self):
         number_of_characters = 0
@@ -71,18 +75,19 @@ class RowToVector:
             for index, letter in enumerate(word):
                 if ord(word[index]) >= 48 and ord(word[index]) <= 57:
                     numbers += 1
+        ans = 1 if numbers > 10 else 0
         return numbers
 
     def number_of_marketing_ref(self):
         marketing_items = (
             re.findall('click|email|sales|below|here|subscribe|Visit|our|website|promotion|Member', ''.join(self.row),
                        re.IGNORECASE))
-        return 0 if ((not marketing_items) or marketing_items[0] == '') else len(marketing_items)
+        return 0 if ((not marketing_items) or marketing_items[0] == '') else 1
 
     def number_of_money_ref(self):
         money_items = (
             re.findall('free|money|$|price|offer|special|now|award|deal|cheap|save', ''.join(self.row), re.IGNORECASE))
-        return len(money_items) if money_items[0] != '' else 0
+        return 1 if money_items[0] != '' else 0
 
     def has_free(self):
         return 1 if re.search('free', ''.join(self.row)) else 0

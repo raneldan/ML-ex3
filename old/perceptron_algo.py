@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Perceptron(object):
 
     def __init__(self, no_of_inputs, threshold=100, learning_rate=0.01):

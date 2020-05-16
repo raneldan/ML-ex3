@@ -48,7 +48,7 @@ def main():
         for y in range(x + 1, number_of_features + 1):
             features_to_ignore = [x, y]
             run_once(num_of_runs_per_feature_set, ignore_features_lst=features_to_ignore)
-    # run_perceptron.run(email_features_file_name, email_tags_file_name)
+    run_perceptron.run(email_features_file_name, email_tags_file_name)
     # run_perceptron.run(sms_features_file_name, sms_tags_file_name)
 
 

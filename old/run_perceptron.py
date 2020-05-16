@@ -38,3 +38,12 @@ def run(features_file_name, tags_file_name):
 
     return accuracy_score(predictions_perceptron, test_tags) * 100
     # print("Perceptron Accuracy Score -> ",accuracy_score(predictions_perceptron, test_tags)*100)
+
+sms_features_file_name = "features.csv"
+sms_tags_file_name = "tags.csv"
+
+email_features_file_name = "featuresEmail.csv"
+email_tags_file_name = "tagsEmail.csv"
+
+ans = run(email_features_file_name,email_tags_file_name)
+print(ans)
