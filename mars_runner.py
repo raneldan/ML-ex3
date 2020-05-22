@@ -34,11 +34,11 @@ def run(features_file_name, tags_file_name):
     for vec in test:
         p = linearRegression.predict(vec)
         predictions_lr.append(p)
-    sum = 00
+    sum = 0
     for index, pred in enumerate(predictions_lr):
         diff = abs(pred - test_tags[index])
         if (test_tags[index] != 0):
             sum += diff / test_tags[index]
     print(100 - sum/predictions_lr.__len__())
 
-run("features/apartments.csv","tags/apartments.csv");
+run("features/mars.csv","tags/mars.csv");
